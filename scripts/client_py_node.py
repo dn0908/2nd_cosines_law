@@ -3,13 +3,13 @@
 import sys
 import rospy
 import math
-from dyros_practice_2.srv import *
+from 2nd_cosines_law.srv import *
 
-def dyros_calc_client(a, b, angle):
+def ros_calc_client(a, b, angle):
 	rospy.wait_for_service('/cosine_calc')
 	try:
-		dyros_calc = rospy.ServiceProxy('/cosine_calc', ABAngle)
-		resp1 = dyros_calc(a, b, angle)
+		ros_calc = rospy.ServiceProxy('/cosine_calc', ABAngle)
+		resp1 = ros_calc(a, b, angle)
 		return resp1.c
 	except rospy.ServiceException, e:
 		print "Service call failed: %s"%e
@@ -26,4 +26,4 @@ if __name__ == "__main__":
 		print usage()
 		sys.exit(1)
 	print ("Requesting with %s %s %s"%(a, b, math.degrees(angle)))
-	print ("c = %s"%(dyros_calc_client(a, b, angle)))
+	print ("c = %s"%(ros_calc_client(a, b, angle)))
