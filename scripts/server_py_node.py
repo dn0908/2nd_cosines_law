@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# license removed for brevity
-from dyros_practice_2.srv import *
+
+from 2nd_cosines_law.srv import *
 import rospy
 from math import sqrt, pow, cos, degrees
 
@@ -10,12 +10,12 @@ def handle_calc_c(req):
 	res.c = sqrt(pow(req.a,2) + pow(req.b,2) - 2*req.a*req.b*cos(req.angle))
 	return res
 
-def dyros_calc_server():
-	rospy.init_node('dyros_server')
+def ros_calc_server():
+	rospy.init_node('ros_server')
 	s = rospy.Service('/cosine_calc', ABAngle, handle_calc_c)
 	print ("Ready to calculate the c.")
 	rospy.spin()
 
 
 if __name__ == "__main__":
-	dyros_calc_server()
+	ros_calc_server()
